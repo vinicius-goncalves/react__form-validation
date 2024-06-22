@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-function ProtectedRoutes(): JSX.Element {
+function ProtectedRoute(): JSX.Element {
     return (
         <div>
             <Outlet />
@@ -8,4 +8,4 @@ function ProtectedRoutes(): JSX.Element {
     );
 }
 
-export default ProtectedRoutes;
+export default ProtectedRoute;

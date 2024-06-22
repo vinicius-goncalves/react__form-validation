@@ -1,17 +1,20 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import {
     RouterProvider,
     createBrowserRouter,
     createRoutesFromElements,
 } from 'react-router-dom';
 import './index.css';
-import Login, { loginAction } from './pages/Login';
-import ProtectedRoutes from './pages/ProtectedRoutes';
+import LoginPage from './pages/LoginPage';
+import ProtectedRoutes from './pages/ProtectedRoute';
+import { loginAction } from './router/actions/login-action';
+import store from './store';
 
 createRoutesFromElements;
 const router = createBrowserRouter([
-    { path: '/login', element: <Login />, action: loginAction },
+    { path: '/login', element: <LoginPage />, action: loginAction },
     {
         path: '/',
         element: <ProtectedRoutes />,
@@ -20,7 +23,9 @@ const router = createBrowserRouter([
 
 const children = (
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 );
 
