@@ -12,7 +12,8 @@ function Button({
     ...props
 }: Props): JSX.Element {
     const tailwindClass =
-        'bg-black text-white w-full p-3 rounded-md font-medium flex justify-center gap-0.5 items-center hover:gap-1.5 transition-[gap]';
+        'bg-black text-white w-full p-3 rounded-md font-medium ' +
+        ' flex justify-center items-center gap-1 hover:gap-2 transition-[gap]';
 
     return (
         <button type={type} className={tailwindClass} {...props}>

@@ -16,7 +16,6 @@ export async function loginAction({ request }: ActionFunctionArgs) {
         return errors;
     }
 
-    console.log('Logged In');
-
+    localStorage.setItem('user', JSON.stringify(true));
     return null;
 }

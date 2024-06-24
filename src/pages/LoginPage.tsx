@@ -1,21 +1,28 @@
 import { useEffect, useState } from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, Navigate, useActionData } from 'react-router-dom';
 import Title from '../components/Title';
 import Button from '../components/html/Button';
 import Input from '../components/html/Input';
+import useAuth from '../hooks/useAuth';
+interface Errors {
+    username: string;
+    password: string;
+}
 
 function LoginPage(): JSX.Element {
-    interface Errors {
-        username: string;
-        password: string;
-    }
-
     const actionData = useActionData() as Errors;
     const [errors, setErrors] = useState<Errors | null>(actionData);
 
     useEffect(() => {
         setErrors(actionData);
     }, [actionData]);
+
+    const { user } = useAuth();
+
+    if (user) {
+        console.log(user);
+        return <Navigate to="/contactUs" />;
+    }
 
     return (
         <div className="bg-c-gray min-w-full min-h-screen flex items-center justify-center">

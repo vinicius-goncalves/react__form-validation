@@ -1,28 +1,28 @@
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { authActions } from '../store/slices/authSlice';
+import { useCallback, useEffect } from 'react';
+import { getUser, setAuthStatus } from '../store/slices/authSlice';
+import { useAppDispatch } from './useAppDispatch';
 import { useAppSelector } from './useAppSelector';
 
 export function useAuth() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.authSlice.user);
 
     const login = useCallback(() => {
-        dispatch(authActions.setAuthState(true));
+        dispatch(setAuthStatus(true));
     }, [dispatch]);
 
     const logout = useCallback(() => {
-        dispatch(authActions.setAuthState(false));
+        dispatch(setAuthStatus(false));
     }, [dispatch]);
 
-    const getUser = useCallback(() => {
-        return user;
-    }, [user]);
+    useEffect(() => {
+        dispatch(getUser(null));
+    }, [dispatch]);
 
     return {
+        user,
         login,
         logout,
-        getUser,
     };
 }
 
