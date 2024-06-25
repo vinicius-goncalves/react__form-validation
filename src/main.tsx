@@ -10,7 +10,8 @@ import './index.css';
 import ContactUsPage from './pages/ContactUsPage';
 import LoginPage from './pages/LoginPage';
 import ProtectedPage from './pages/ProtectedRoute';
-import { loginAction } from './router/actions/login-action';
+import { contactUsAction } from './router/actions/contact-us.action';
+import { loginAction } from './router/actions/login.action';
 import store from './store';
 
 createRoutesFromElements;
@@ -19,7 +20,13 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <ProtectedPage />,
-        children: [{ path: 'contactUs', element: <ContactUsPage /> }],
+        children: [
+            {
+                path: 'contactUs',
+                element: <ContactUsPage />,
+                action: contactUsAction,
+            },
+        ],
     },
 ]);
 

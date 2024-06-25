@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Form, Navigate, useActionData } from 'react-router-dom';
+import CustomInput from '../components/CustomInput';
 import Title from '../components/Title';
 import Button from '../components/html/Button';
-import Input from '../components/html/Input';
 import useAuth from '../hooks/useAuth';
 interface Errors {
     username: string;
@@ -20,27 +20,26 @@ function LoginPage(): JSX.Element {
     const { user } = useAuth();
 
     if (user) {
-        console.log(user);
         return <Navigate to="/contactUs" />;
     }
 
     return (
-        <div className="bg-c-gray min-w-full min-h-screen flex items-center justify-center">
+        <div className="flex min-h-screen min-w-full items-center justify-center bg-c-gray">
             <Form
                 method="POST"
-                className="bg-white w-full max-w-lg p-8 rounded-md shadow-lg">
+                className="w-full max-w-lg rounded-md bg-white p-8 shadow-lg">
                 <header>
                     <Title title="Login" />
                 </header>
                 <section className="my-6" onInput={() => setErrors(null)}>
-                    <Input
+                    <CustomInput
                         labelTitle="Username"
                         name="username"
                         type="text"
                         errorMessage={errors?.username}
                         required
                     />
-                    <Input
+                    <CustomInput
                         labelTitle="Password"
                         name="password"
                         type="password"

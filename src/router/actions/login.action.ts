@@ -6,9 +6,8 @@ export async function loginAction({ request }: ActionFunctionArgs) {
 
     for (const [k, v] of formData.entries()) {
         if (String(v).length < 3) {
-            errors[
-                k
-            ] = `The "${k}" must be have three (3) or more characters."`;
+            errors[k] =
+                `The "${k}" must be have three (3) or more characters."`;
         }
     }
 
